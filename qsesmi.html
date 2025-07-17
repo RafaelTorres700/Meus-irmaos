@@ -1,0 +1,388 @@
+<!-- Página do Projeto: Quem Sou Eu Sem Meus Irmãos -->
+<!-- Projeto idealizado por policiais do BOPE do RJ -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quem Sou Eu Sem Meus Irmãos</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <img
+          src="public/img/LOGOMARCAREGISTRADA.jpg"
+          alt="Logo"
+          class="nav-logo"
+        />
+        <ul class="nav-menu">
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#acoes">Ações</a></li>
+          <li><a href="#produtos">Loja</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <img
+          src="public/img/LOGOMARCAREGISTRADA.jpg"
+          alt="Logo Quem Sou Eu Sem Meus Irmãos"
+          class="hero-logo"
+        />
+        <h1 class="hero-title">Quem Sou Eu Sem Meus Irmãos</h1>
+        <p class="hero-subtitle">União. Força. Propósito.</p>
+        <div class="hero-badges">
+          <span class="badge">BOPE RJ</span>
+          <span class="badge">Solidariedade</span>
+          <span class="badge">Força Policial</span>
+        </div>
+        <a href="#sobre" class="cta-button">Conheça Nossa Missão</a>
+      </div>
+    </header>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="sobre">
+      <div class="container">
+        <div class="section-header">
+          <h2>Sobre o Projeto</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="sobre-content">
+          <div class="sobre-text">
+            <p>
+              O projeto <strong>Quem Sou Eu Sem Meus Irmãos</strong> nasceu da
+              união de policiais do <strong>BOPE do Rio de Janeiro</strong> com
+              o objetivo de fortalecer laços, promover solidariedade e dar
+              suporte a companheiros de farda em situações de vulnerabilidade.
+            </p>
+            <p>
+              Realizamos eventos como
+              <strong
+                >corridas de rua, mentorias, cursos táticos, encontros e ações
+                sociais</strong
+              >. Parte da arrecadação é destinada a ajudar
+              <strong
+                >policiais cadeirantes, feridos em serviço, com necessidades
+                especiais</strong
+              >
+              ou em situação de risco.
+            </p>
+          </div>
+          <div class="sobre-stats">
+            <div class="stat-item">
+              <div class="stat-number">Solidariedade</div>
+              <div class="stat-label">Apoiado a policiais baleados</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">2</div>
+              <div class="stat-label">Eventos Realizados</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">Produtos exclusivos</div>
+              <div class="stat-label">Use nossa marca</div>
+            </div>
+          </div>
+        </div>
+        <!-- Galeria de fotos dos policiais -->
+        <div
+          class="sobre-galeria"
+          style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap"
+        >
+          <img
+            src="public/img/alairsantiagoalvaro.jpg"
+            alt="Alair"
+            style="width: 120px; border-radius: 10px"
+          />
+          <img
+            src="public/img/tiagoeu.jpg"
+            alt="Romulo"
+            style="width: 120px; border-radius: 10px"
+          />
+          <img
+            src="public/img/medalhacristo.jpg"
+            alt="Tiago e Eu"
+            style="width: 120px; border-radius: 10px"
+          />
+          <img
+            src="public/img/torresequasepolicia.jpg"
+            alt="Torres"
+            style="width: 120px; border-radius: 10px"
+          />
+          <img
+            src="public\img\todo melhor.jpg"
+            alt="Torres 2"
+            style="width: 120px; border-radius: 10px"
+          />
+          <img
+            src="public\img\podiumfeminino.jpg"
+            alt="Torres quase polícia"
+            style="width: 120px; border-radius: 10px"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Ações Section -->
+    <section id="acoes" class="acoes">
+      <div class="container">
+        <div class="section-header">
+          <h2>O Que Fazemos</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="acoes-grid">
+          <div class="acao-card">
+            <img
+              src="public/img/inicio.jpg"
+              alt="Corrida Masculina"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem"
+            />
+            <i class="fas fa-running"></i>
+            <h3>Corridas de Rua</h3>
+            <p>
+              Organização de corridas temáticas que unem esporte e solidariedade
+            </p>
+          </div>
+          <div class="acao-card">
+            <img
+              src="public/img/cursos.jpg"
+              alt="Flexão"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem"
+            />
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Cursos e Mentorias</h3>
+            <p>Capacitação tática e desenvolvimento profissional contínuo</p>
+          </div>
+          <div class="acao-card">
+            <img
+              src="public\img\cedae.jpg"
+              alt="CEDAE"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem"
+            />
+            <i class="fas fa-hands-helping"></i>
+            <h3>Parceria CEDAE</h3>
+            <p>
+              Colaboração com a CEDAE para ações sociais e apoio à comunidade
+            </p>
+          </div>
+          <div class="acao-card">
+            <img
+              src="public/img/podiumvazio.jpg"
+              alt="Podium Black Skull"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem"
+            />
+            <i class="fas fa-tshirt"></i>
+            <h3>Nossos campeões da 2ª Edição</h3>
+            <p>Produtos exclusivos com toda renda revertida para ajuda</p>
+          </div>
+
+          <div class="acao-card">
+            <img
+              src="public/img/podiumvazio.jpg"
+              alt="Podium Black Skull"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem"
+            />
+            <i class="fas fa-tshirt"></i>
+            <h3>Nossas campeãs da 2ª Edição</h3>
+            <p>Produtos exclusivos com toda renda revertida para ajuda</p>
+          </div>
+          <div class="acao-card">
+            <img
+              src="public\img\podiumfeminino.jpg"
+              alt="Podium Black Skull"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem"
+            />
+            <i class="fas fa-tshirt"></i>
+            <h3>Nossas campeãs da 2ª Edição</h3>
+            <p>Produtos exclusivos com toda renda revertida para ajuda</p>
+          </div>
+
+          <div class="acao-card">
+            <img
+              src="public/img/cardozinho.jpg"
+              alt="Medalha Cristo"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem"
+            />
+            <i class="fas fa-wheelchair"></i>
+            <h3>Apoio Direto</h3>
+            <p>Suporte a policiais com dificuldades físicas ou financeiras</p>
+          </div>
+          <div class="acao-card">
+            <img
+              src="public\img\todo melhor.jpg"
+              alt="Todos Irmãos"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem"
+            />
+            <i class="fas fa-shield-alt"></i>
+            <h3>Irmandade</h3>
+            <p>Fortalecimento dos laços entre companheiros de farda</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produtos Section -->
+    <section id="produtos" class="produtos">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nossos produtos</h2>
+          <div class="section-line"></div>
+          <p class="section-subtitle">
+            Toda compra ajuda um irmão de farda. Confira nossa linha de produtos
+            oficiais:
+          </p>
+        </div>
+        <div class="produtos-grid">
+          <div class="produto-card">
+            <img src="public/img/blusafrente.jpg" alt="Camiseta Oficial" />
+            <div class="produto-info">
+              <h3>Camiseta Oficial</h3>
+              <p>100% algodão com design exclusivo</p>
+              <div class="produto-preco">R$ 45,00</div>
+            </div>
+          </div>
+
+          
+          <div class="produto-card">
+            <img src="img/medalhas.jpg" alt="Caneca Personalizada" />
+            <div class="produto-info">
+              <h3>Caneca Personalizada</h3>
+              <p>Cerâmica de alta qualidade</p>
+              <div class="produto-preco">R$ 25,00</div>
+            </div>
+          </div>
+          <div class="produto-card">
+            <img src="img/podiumfeminino.jpg" alt="Kit Corrida" />
+            <div class="produto-info">
+              <h3>Kit Corrida</h3>
+              <p>Kit completo para eventos esportivos</p>
+              <div class="produto-preco">R$ 80,00</div>
+            </div>
+          </div>
+          <!-- Galeria extra de conquistas -->
+          
+         
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="contato">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contato</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="contato-content">
+          <div class="contato-info">
+            <h3>Quer apoiar o projeto?</h3>
+            <p>
+              Participe dos nossos eventos ou adquira nossos produtos solidários
+            </p>
+            <div class="contato-item">
+              <i class="fab fa-whatsapp"></i>
+              <span>(99) 99999-9999</span>
+            </div>
+            <div class="contato-item">
+              <i class="fas fa-envelope"></i>
+              <span>contato@qsesmi.com.br</span>
+            </div>
+            <div class="contato-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Rio de Janeiro - RJ</span>
+            </div>
+          </div>
+          <div class="contato-cta">
+            <a
+              href="https://wa.me/5599999999999"
+              class="whatsapp-button"
+              target="_blank"
+            >
+              <i class="fab fa-whatsapp"></i>
+              Fale Conosco no WhatsApp
+            </a>
+            <!-- Imagem de todos juntos para reforçar união -->
+            <img
+              src="img/todo melhor.jpg"
+              alt="União dos Irmãos"
+              style="width: 220px; border-radius: 15px; margin-top: 2rem"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <img src="assets/logo.png" alt="Logo" class="footer-logo" />
+            <p>Unidos pela força, movidos pelo propósito</p>
+          </div>
+          <div class="footer-section">
+            <h4>Links Rápidos</h4>
+            <ul>
+              <li><a href="#sobre">Sobre</a></li>
+              <li><a href="#acoes">Ações</a></li>
+              <li><a href="#produtos">Loja</a></li>
+              <li><a href="#contato">Contato</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Desenvolvedor</h4>
+            <p>Desenvolvido por <strong>Rafael Torres</strong></p>
+            <p>💻 Quer uma página como essa?</p>
+            <p><strong>(99) 99999-9999</strong></p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            © 2025 - Quem Sou Eu Sem Meus Irmãos | Todos os direitos reservados
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      });
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
