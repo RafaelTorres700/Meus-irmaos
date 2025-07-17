@@ -79,14 +79,14 @@ body {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, rgba(17, 17, 17, 0.9), rgba(26, 26, 26, 0.9)),
-                url('assets/hero-bg.jpg') center/cover;
+    background:   url('public/img/medalhas.jpg') center/cover;   
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
-}
+   
+   }
 
 .hero-overlay {
     position: absolute;
