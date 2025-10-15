@@ -92,18 +92,35 @@ body {
     color: var(--primary-color);
 }
 
+/* Menu Hamburger Styles */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
 }
 
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: var(--primary-color);
+    background-color: var(--text-color);
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Animação do hamburger quando ativo */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Hero Section */
@@ -518,17 +535,39 @@ body {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 80px;
         flex-direction: column;
-        background-color: rgba(44, 44, 44, 0.98);
+        background-color: var(--surface-color);
         width: 100%;
         text-align: center;
         transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        z-index: 1000;
         padding: 2rem 0;
     }
 
     .nav-menu.active {
         left: 0;
+    }
+
+    .nav-menu li {
+        margin: 1rem 0;
+    }
+
+    .nav-menu a {
+        font-size: 1.1rem;
+        padding: 1rem;
+        display: block;
+        color: var(--text-color);
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 0 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+        background-color: var(--primary-color);
+        color: var(--background-color);
     }
 
     .hero-title {
