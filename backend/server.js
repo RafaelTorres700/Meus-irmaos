@@ -27,9 +27,7 @@ app.post('/criar-preferencia', async (req, res) => {
     try {
         const { titulo, preco, quantidade, descricao, metodoPagamento } = req.body;
 
-        const preference = new Preference(client);
-
-        // Define os métodos de pagamento baseado na escolha do usuário
+        const preference = new Preference(client);        // Define os métodos de pagamento baseado na escolha do usuário
         // Documentação: https://www.mercadopago.com.br/developers/pt/reference/preferences/_checkout_preferences/post
         let excludedPaymentTypes = [];
         let defaultPaymentMethodId = null;
@@ -40,7 +38,6 @@ app.post('/criar-preferencia', async (req, res) => {
                 { id: 'credit_card' },
                 { id: 'debit_card' },
                 { id: 'ticket' },
-                { id: 'account_money' },
                 { id: 'prepaid_card' }
             ];
             defaultPaymentMethodId = 'pix';
@@ -49,7 +46,6 @@ app.post('/criar-preferencia', async (req, res) => {
             excludedPaymentTypes = [
                 { id: 'ticket' },
                 { id: 'bank_transfer' },
-                { id: 'account_money' },
                 { id: 'prepaid_card' }
             ];
         } else if (metodoPagamento === 'boleto') {
@@ -58,7 +54,6 @@ app.post('/criar-preferencia', async (req, res) => {
                 { id: 'credit_card' },
                 { id: 'debit_card' },
                 { id: 'bank_transfer' },
-                { id: 'account_money' },
                 { id: 'prepaid_card' }
             ];
         }
