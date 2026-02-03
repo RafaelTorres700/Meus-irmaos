@@ -1,0 +1,79 @@
+<!-- filepath: c:\1- meusprojetos\1-QSESMI-INDEX\Meus-irmaos\pagamento-erro.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Recusado - Quem Sou Eu Sem Meus Irmãos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="img/LOGOMARCAREGISTRADA.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .resultado-container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 3rem;
+            background: var(--surface-color);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .icone-erro {
+            font-size: 5rem;
+            color: #ff6b6b;
+            margin-bottom: 1.5rem;
+        }
+        .resultado-container h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .resultado-container p {
+            color: var(--text-secondary-color);
+            margin-bottom: 2rem;
+        }
+        .btn-tentar {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--accent-color);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+        }
+        .btn-tentar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(191, 174, 142, 0.5);
+        }
+        .btn-voltar {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-voltar:hover {
+            background: var(--primary-color);
+            color: var(--background-color);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="resultado-container">
+            <i class="fas fa-times-circle icone-erro"></i>
+            <h1>Pagamento Recusado</h1>
+            <p>Houve um problema com o seu pagamento. Verifique os dados e tente novamente.</p>
+            <a href="pagamento.html" class="btn-tentar">Tentar novamente</a>
+            <a href="index.html" class="btn-voltar">Voltar para o início</a>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

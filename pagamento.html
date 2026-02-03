@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Quem Sou Eu Sem Meus Irmãos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="img/LOGOMARCAREGISTRADA.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .pagamento-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 2rem;
+            background: var(--surface-color);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+        .pagamento-container h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .produto-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--surface-color-secondary);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .produto-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .produto-info p {
+            color: var(--text-secondary-color);
+        }
+        .produto-preco {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .btn-pagar {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-top: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--accent-color);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-pagar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(191, 174, 142, 0.5);
+        }
+        .btn-pagar:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .voltar-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .voltar-link:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            color: var(--text-secondary-color);
+            margin-top: 1rem;
+        }
+        .erro {
+            display: none;
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="img/LOGOMARCAREGISTRADA.jpg" alt="Logo" class="nav-logo">
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="loja.html">Loja</a></li>
+                <li><a href="acoes.html">Ações</a></li>
+                <li><a href="index.html#contato">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="pagamento-container">
+            <h1><i class="fas fa-credit-card"></i> Finalizar Pagamento</h1>
+            
+            <div class="produto-item">
+                <div class="produto-info">
+                    <h3 id="produto-titulo">Carregando...</h3>
+                    <p id="produto-descricao">Carregando descrição...</p>
+                </div>
+                <div class="produto-preco" id="produto-preco">R$ 0,00</div>
+            </div>
+
+            <button class="btn-pagar" id="btn-pagar">
+                <i class="fas fa-lock"></i> Pagar com Mercado Pago
+            </button>
+
+            <div class="loading" id="loading">
+                <i class="fas fa-spinner fa-spin"></i> Processando...
+            </div>
+
+            <div class="erro" id="erro">
+                <i class="fas fa-exclamation-triangle"></i> 
+                <span id="erro-mensagem">Erro ao processar pagamento</span>
+            </div>
+
+            <a href="loja.html" class="voltar-link">← Voltar para a loja</a>
+        </div>
+    </main>
+
+    <!-- SDK do Mercado Pago -->
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script>
+        // Public Key do Mercado Pago (segura para front-end)
+        const PUBLIC_KEY = 'APP_USR-dbd714d1-3d70-4d88-8a85-ce695e306ae0';
+        
+        // URL do seu backend (altere para produção quando publicar)
+        const BACKEND_URL = 'http://localhost:3001';
+
+        // Lê os parâmetros da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Dados do produto vindos da loja via URL
+        const produto = {
+            titulo: urlParams.get('titulo') || 'Produto QSESMI',
+            descricao: urlParams.get('descricao') || 'Produto oficial do projeto',
+            preco: parseFloat(urlParams.get('preco')) || 50.00,
+            quantidade: parseInt(urlParams.get('quantidade')) || 1
+        };
+
+        // Atualiza a tela com os dados do produto
+        document.getElementById('produto-titulo').textContent = produto.titulo;
+        document.getElementById('produto-descricao').textContent = produto.descricao;
+        document.getElementById('produto-preco').textContent = 
+            `R$ ${produto.preco.toFixed(2).replace('.', ',')}`;
+
+        // Inicializa o Mercado Pago
+        const mp = new MercadoPago(PUBLIC_KEY, { locale: 'pt-BR' });
+
+        // Função para criar pagamento
+        async function criarPagamento() {
+            const btnPagar = document.getElementById('btn-pagar');
+            const loading = document.getElementById('loading');
+            const erro = document.getElementById('erro');
+
+            btnPagar.disabled = true;
+            loading.style.display = 'block';
+            erro.style.display = 'none';
+
+            try {
+                // Chama o backend para criar a preferência
+                const response = await fetch(`${BACKEND_URL}/criar-preferencia`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(produto)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao criar preferência de pagamento');
+                }
+
+                const data = await response.json();
+
+                // Redireciona para o checkout do Mercado Pago
+                window.location.href = data.init_point;
+
+            } catch (error) {
+                console.error('Erro:', error);
+                erro.style.display = 'block';
+                document.getElementById('erro-mensagem').textContent = 
+                    'Erro ao processar pagamento. Verifique se o servidor está rodando.';
+                btnPagar.disabled = false;
+                loading.style.display = 'none';
+            }
+        }
+
+        // Event listener do botão de pagar
+        document.getElementById('btn-pagar').addEventListener('click', criarPagamento);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
