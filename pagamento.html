@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="img/LOGOMARCAREGISTRADA.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">    <style>
         .pagamento-container {
             max-width: 600px;
             margin: 40px auto;
@@ -29,7 +28,7 @@
             padding: 1rem;
             background: var(--surface-color-secondary);
             border-radius: 10px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         .produto-info h3 {
             color: var(--primary-color);
@@ -43,11 +42,87 @@
             font-weight: 700;
             color: var(--primary-color);
         }
+        
+        /* Seção de Método de Pagamento */
+        .metodo-pagamento-section {
+            margin-bottom: 1.5rem;
+        }
+        .metodo-pagamento-section h2 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .metodos-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+        }
+        .metodo-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--surface-color-secondary);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .metodo-option:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        .metodo-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(191, 174, 142, 0.1);
+        }
+        .metodo-option input[type="radio"] {
+            display: none;
+        }
+        .metodo-icon {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            width: 40px;
+            text-align: center;
+        }
+        .metodo-info {
+            flex: 1;
+        }
+        .metodo-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+        }
+        .metodo-info p {
+            color: var(--text-secondary-color);
+            font-size: 0.85rem;
+        }
+        .metodo-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .metodo-option.selected .metodo-check {
+            background: var(--primary-color);
+        }
+        .metodo-option.selected .metodo-check::after {
+            content: '✓';
+            color: var(--surface-color);
+            font-weight: bold;
+        }
+        
         .btn-pagar {
             display: block;
             width: 100%;
             padding: 1rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--accent-color);
             border: none;
@@ -64,6 +139,7 @@
         .btn-pagar:disabled {
             opacity: 0.6;
             cursor: not-allowed;
+            transform: none;
         }
         .voltar-link {
             display: block;
@@ -87,6 +163,25 @@
             text-align: center;
             margin-top: 1rem;
         }
+        .aviso-metodo {
+            display: none;
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .seguranca-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--text-secondary-color);
+            font-size: 0.85rem;
+        }
+        .seguranca-info i {
+            color: #25d366;
+        }
     </style>
 </head>
 <body>
@@ -106,12 +201,11 @@
                 <span></span>
             </div>
         </div>
-    </nav>
-
-    <main>
+    </nav>    <main>
         <div class="pagamento-container">
-            <h1><i class="fas fa-credit-card"></i> Finalizar Pagamento</h1>
+            <h1><i class="fas fa-shopping-cart"></i> Finalizar Compra</h1>
             
+            <!-- Resumo do Produto -->
             <div class="produto-item">
                 <div class="produto-info">
                     <h3 id="produto-titulo">Carregando...</h3>
@@ -120,12 +214,65 @@
                 <div class="produto-preco" id="produto-preco">R$ 0,00</div>
             </div>
 
-            <button class="btn-pagar" id="btn-pagar">
-                <i class="fas fa-lock"></i> Pagar com Mercado Pago
+            <!-- Seleção de Método de Pagamento -->
+            <div class="metodo-pagamento-section">
+                <h2><i class="fas fa-wallet"></i> Escolha o método de pagamento</h2>
+                
+                <div class="metodos-grid">
+                    <label class="metodo-option" data-metodo="pix">
+                        <input type="radio" name="metodo" value="pix">
+                        <div class="metodo-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="metodo-info">
+                            <h4>PIX</h4>
+                            <p>Pagamento instantâneo - Aprovação imediata</p>
+                        </div>
+                        <div class="metodo-check"></div>
+                    </label>
+
+                    <label class="metodo-option" data-metodo="cartao">
+                        <input type="radio" name="metodo" value="cartao">
+                        <div class="metodo-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="metodo-info">
+                            <h4>Cartão de Crédito</h4>
+                            <p>Parcele em até 12x</p>
+                        </div>
+                        <div class="metodo-check"></div>
+                    </label>
+
+                    <label class="metodo-option" data-metodo="boleto">
+                        <input type="radio" name="metodo" value="boleto">
+                        <div class="metodo-icon">
+                            <i class="fas fa-barcode"></i>
+                        </div>
+                        <div class="metodo-info">
+                            <h4>Boleto Bancário</h4>
+                            <p>Vencimento em 3 dias úteis</p>
+                        </div>
+                        <div class="metodo-check"></div>
+                    </label>
+                </div>
+                
+                <p class="aviso-metodo" id="aviso-metodo">
+                    <i class="fas fa-exclamation-circle"></i> 
+                    Por favor, selecione um método de pagamento
+                </p>
+            </div>
+
+            <button class="btn-pagar" id="btn-pagar" disabled>
+                <i class="fas fa-lock"></i> Continuar para Pagamento
             </button>
 
+            <div class="seguranca-info">
+                <i class="fas fa-shield-alt"></i>
+                <span>Pagamento 100% seguro via Mercado Pago</span>
+            </div>
+
             <div class="loading" id="loading">
-                <i class="fas fa-spinner fa-spin"></i> Processando...
+                <i class="fas fa-spinner fa-spin"></i> Redirecionando para o Mercado Pago...
             </div>
 
             <div class="erro" id="erro">
@@ -135,9 +282,7 @@
 
             <a href="loja.html" class="voltar-link">← Voltar para a loja</a>
         </div>
-    </main>
-
-    <!-- SDK do Mercado Pago -->
+    </main>    <!-- SDK do Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
         // Public Key do Mercado Pago (segura para front-end)
@@ -154,7 +299,8 @@
             titulo: urlParams.get('titulo') || 'Produto QSESMI',
             descricao: urlParams.get('descricao') || 'Produto oficial do projeto',
             preco: parseFloat(urlParams.get('preco')) || 50.00,
-            quantidade: parseInt(urlParams.get('quantidade')) || 1
+            quantidade: parseInt(urlParams.get('quantidade')) || 1,
+            metodoPagamento: null
         };
 
         // Atualiza a tela com os dados do produto
@@ -166,11 +312,47 @@
         // Inicializa o Mercado Pago
         const mp = new MercadoPago(PUBLIC_KEY, { locale: 'pt-BR' });
 
+        // Seleção de método de pagamento
+        const metodoOptions = document.querySelectorAll('.metodo-option');
+        const btnPagar = document.getElementById('btn-pagar');
+        const avisoMetodo = document.getElementById('aviso-metodo');
+
+        metodoOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove seleção anterior
+                metodoOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Adiciona seleção atual
+                this.classList.add('selected');
+                this.querySelector('input[type="radio"]').checked = true;
+                
+                // Salva o método selecionado
+                produto.metodoPagamento = this.dataset.metodo;
+                
+                // Habilita o botão de pagar
+                btnPagar.disabled = false;
+                avisoMetodo.style.display = 'none';
+                
+                // Atualiza texto do botão baseado no método
+                const textos = {
+                    'pix': '<i class="fas fa-qrcode"></i> Pagar com PIX',
+                    'cartao': '<i class="fas fa-credit-card"></i> Pagar com Cartão',
+                    'boleto': '<i class="fas fa-barcode"></i> Gerar Boleto'
+                };
+                btnPagar.innerHTML = textos[produto.metodoPagamento] || '<i class="fas fa-lock"></i> Continuar para Pagamento';
+            });
+        });
+
         // Função para criar pagamento
         async function criarPagamento() {
-            const btnPagar = document.getElementById('btn-pagar');
             const loading = document.getElementById('loading');
             const erro = document.getElementById('erro');
+
+            // Verifica se um método foi selecionado
+            if (!produto.metodoPagamento) {
+                avisoMetodo.style.display = 'block';
+                return;
+            }
 
             btnPagar.disabled = true;
             loading.style.display = 'block';
@@ -206,7 +388,7 @@
         }
 
         // Event listener do botão de pagar
-        document.getElementById('btn-pagar').addEventListener('click', criarPagamento);
+        btnPagar.addEventListener('click', criarPagamento);
     </script>
     <script src="script.js"></script>
 </body>
