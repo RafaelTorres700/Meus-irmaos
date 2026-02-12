@@ -297,13 +297,15 @@
       </div>
     </main>
     <!-- SDK do Mercado Pago -->
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <script>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>    <script>
       // Public Key do Mercado Pago (segura para front-end)
       const PUBLIC_KEY = "APP_USR-dbd714d1-3d70-4d88-8a85-ce695e306ae0";
 
-      // URL do seu backend (altere para produção quando publicar)
-      const BACKEND_URL = "http://localhost:3001";
+      // URL do backend - detecta automaticamente se é produção ou desenvolvimento
+      // IMPORTANTE: Substitua 'SEU-BACKEND.vercel.app' pela URL real do seu backend na Vercel
+      const BACKEND_URL = window.location.hostname === 'localhost' 
+        ? "http://localhost:3001"
+        : "https://qsesmi-pagamentos-api.onrender.com";
 
       // Lê os parâmetros da URL
       const urlParams = new URLSearchParams(window.location.search);
