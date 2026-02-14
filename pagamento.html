@@ -303,9 +303,10 @@
 
       // URL do backend - detecta automaticamente se é produção ou desenvolvimento
       // IMPORTANTE: Substitua 'SEU-BACKEND.vercel.app' pela URL real do seu backend na Vercel
-      const BACKEND_URL = window.location.hostname === 'localhost' 
-        ? "http://localhost:3001"
-        : "https://qsesmi-pagamentos.vercel.app";
+      const BACKEND_URL = window.location.hostname === 'localhost'
+  ? "http://localhost:3001"
+  : "https://qsesmi-pagamentos-api.onrender.com";
+
 
       // Lê os parâmetros da URL
       const urlParams = new URLSearchParams(window.location.search);
