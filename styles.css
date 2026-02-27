@@ -647,3 +647,72 @@ html {
 .produto-card {
     animation: fadeInUp 0.6s ease forwards;
 }
+
+/* Login Form Styles */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 2rem 2rem 1.5rem 2rem;
+    background: var(--surface-color);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(191, 174, 142, 0.15);
+    border: 1px solid var(--border-color);
+}
+.login-title {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.login-form label {
+    color: var(--text-secondary-color);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--surface-color-secondary);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+.login-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--accent-color);
+    padding: 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 4px 15px rgba(191, 174, 142, 0.15);
+}
+.login-button:hover {
+    box-shadow: 0 8px 25px rgba(191, 174, 142, 0.25);
+    transform: translateY(-2px);
+}
+@media (max-width: 480px) {
+    .login-container {
+        margin: 40px 10px;
+        padding: 1rem;
+    }
+    .login-title {
+        font-size: 1.3rem;
+    }
+}
