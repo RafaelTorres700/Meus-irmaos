@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verificar E-mail - QSESMI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="img/LOGOMARCAREGISTRADA.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      .verificar-wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+        background: var(--background-color);
+      }
+
+      .verificar-container {
+        background: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 3rem 2.5rem;
+        width: 100%;
+        max-width: 480px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      }
+
+      .verificar-container img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        border: 2px solid var(--primary-color);
+      }
+
+      .icone-status {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+      }
+
+      .icone-status.loading { color: var(--primary-color); }
+      .icone-status.sucesso { color: #25d366; }
+      .icone-status.erro    { color: #ff6b6b; }
+
+      .verificar-container h1 {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .verificar-container p {
+        color: var(--text-secondary-color);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .btn-login {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color, #a89060));
+        color: var(--accent-color, #1a1a1a);
+        padding: 0.9rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(191, 174, 142, 0.4);
+      }
+
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+
+      .fa-spin { animation: spin 1s linear infinite; }
+    </style>
+  </head>
+  <body>
+    <div class="verificar-wrapper">
+      <div class="verificar-container">
+
+        <img src="img/LOGOMARCAREGISTRADA.jpg" alt="Logo QSESMI" />
+
+        <!-- Estado: Carregando -->
+        <div id="estado-loading">
+          <div class="icone-status loading">
+            <i class="fas fa-spinner fa-spin"></i>
+          </div>
+          <h1>Verificando seu e-mail...</h1>
+          <p>Aguarde um momento.</p>
+        </div>
+
+        <!-- Estado: Sucesso -->
+        <div id="estado-sucesso" style="display:none;">
+          <div class="icone-status sucesso">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h1>E-mail confirmado! ✅</h1>
+          <p>Sua conta foi ativada com sucesso.<br>Agora você pode fazer login e comprar na nossa loja!</p>
+          <a href="login.html" class="btn-login">
+            <i class="fas fa-sign-in-alt"></i> Fazer Login
+          </a>
+        </div>
+
+        <!-- Estado: Erro -->
+        <div id="estado-erro" style="display:none;">
+          <div class="icone-status erro">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <h1>Link inválido ou expirado</h1>
+          <p id="erro-mensagem">O link de confirmação expirou ou já foi utilizado.<br>Faça um novo cadastro ou entre em contato.</p>
+          <a href="cadastro.html" class="btn-login">
+            <i class="fas fa-user-plus"></i> Novo Cadastro
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      const BACKEND_URL = window.location.hostname === 'localhost'
+        ? 'http://localhost:3001'
+        : 'https://qsesmi-pagamentos-api.onrender.com';
+
+      async function verificarEmail() {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+
+        if (!token) {
+          mostrarErro('Nenhum token encontrado na URL.');
+          return;
+        }
+
+        try {
+          const response = await fetch(`${BACKEND_URL}/auth/confirmar-email?token=${token}`);
+          const data = await response.json();
+
+          if (response.ok) {
+            mostrarSucesso();
+          } else {
+            mostrarErro(data.error || 'Token inválido ou expirado.');
+          }
+        } catch (err) {
+          mostrarErro('Erro ao conectar com o servidor. Tente novamente.');
+        }
+      }
+
+      function mostrarSucesso() {
+        document.getElementById('estado-loading').style.display = 'none';
+        document.getElementById('estado-sucesso').style.display = 'block';
+      }
+
+      function mostrarErro(msg) {
+        document.getElementById('estado-loading').style.display = 'none';
+        document.getElementById('estado-erro').style.display = 'block';
+        if (msg) document.getElementById('erro-mensagem').textContent = msg;
+      }
+
+      // Executar ao carregar a página
+      verificarEmail();
+    </script>
+  </body>
+</html>
