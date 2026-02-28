@@ -6,129 +6,339 @@
     <title>Loja - Quem Sou Eu Sem Meus Irmãos</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="img/LOGOMARCAREGISTRADA.jpg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
       /* CARRINHO */
       .carrinho-btn {
-        position: relative; background: none; border: none;
-        color: var(--text-color); font-size: 1.3rem; cursor: pointer;
-        padding: 0.3rem 0.5rem; transition: color 0.3s;
+        position: relative;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.3rem;
+        cursor: pointer;
+        padding: 0.3rem 0.5rem;
+        transition: color 0.3s;
       }
-      .carrinho-btn:hover { color: var(--primary-color); }
+      .carrinho-btn:hover {
+        color: var(--primary-color);
+      }
       .carrinho-badge {
-        position: absolute; top: -4px; right: -4px;
-        background: var(--primary-color); color: #1a1a1a;
-        border-radius: 50%; width: 18px; height: 18px;
-        font-size: 0.65rem; font-weight: 700;
-        display: flex; align-items: center; justify-content: center;
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: var(--primary-color);
+        color: #1a1a1a;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-      .carrinho-badge.oculto { display: none; }
+      .carrinho-badge.oculto {
+        display: none;
+      }
 
       /* BOAS VINDAS + LOGOUT */
-      .user-info { display: flex; align-items: center; gap: 0.8rem; }
-      .user-name { font-size: 0.85rem; color: var(--text-secondary-color); }
-      .btn-logout-nav {
-        background: none; border: 1px solid var(--border-color);
-        color: var(--text-secondary-color); padding: 0.3rem 0.8rem;
-        border-radius: 20px; cursor: pointer; font-size: 0.8rem;
-        font-family: inherit; transition: all 0.3s;
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
       }
-      .btn-logout-nav:hover { border-color: #ff6b6b; color: #ff6b6b; }
+      .user-name {
+        font-size: 0.85rem;
+        color: var(--text-secondary-color);
+      }
+      .btn-logout-nav {
+        background: none;
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary-color);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+      .btn-logout-nav:hover {
+        border-color: #ff6b6b;
+        color: #ff6b6b;
+      }
 
       /* BTN ADICIONAR AO CARRINHO */
       .btn-add-cart {
-        display: inline-flex; align-items: center; justify-content: center;
-        gap: 0.5rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        color: var(--accent-color); padding: 0.8rem 1.5rem;
-        border-radius: 50px; border: none; font-size: 0.9rem;
-        font-weight: 600; cursor: pointer; font-family: inherit;
-        transition: all 0.3s ease; width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: var(--accent-color);
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        border: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s ease;
+        width: 100%;
       }
-      .btn-add-cart:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(191,174,142,0.4); }
-      .btn-add-cart:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+      .btn-add-cart:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(191, 174, 142, 0.4);
+      }
+      .btn-add-cart:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
 
       /* MODAL CARRINHO */
       .carrinho-overlay {
-        position: fixed; inset: 0; background: rgba(0,0,0,0.7);
-        z-index: 9998; display: none; align-items: flex-start; justify-content: flex-end;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 9998;
+        display: none;
+        align-items: flex-start;
+        justify-content: flex-end;
       }
-      .carrinho-overlay.aberto { display: flex; }
+      .carrinho-overlay.aberto {
+        display: flex;
+      }
       .carrinho-sidebar {
-        background: var(--surface-color); width: 100%; max-width: 420px;
-        height: 100vh; overflow-y: auto; box-shadow: -8px 0 32px rgba(0,0,0,0.4);
-        display: flex; flex-direction: column;
+        background: var(--surface-color);
+        width: 100%;
+        max-width: 420px;
+        height: 100vh;
+        overflow-y: auto;
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
+        display: flex;
+        flex-direction: column;
       }
       .carrinho-header {
-        padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border-color);
-        display: flex; align-items: center; justify-content: space-between;
-        position: sticky; top: 0; background: var(--surface-color); z-index: 1;
+        padding: 1.2rem 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background: var(--surface-color);
+        z-index: 1;
       }
-      .carrinho-header h2 { color: var(--primary-color); font-size: 1.1rem; }
+      .carrinho-header h2 {
+        color: var(--primary-color);
+        font-size: 1.1rem;
+      }
       .btn-fechar-carrinho {
-        background: none; border: none; color: var(--text-color);
-        font-size: 1.3rem; cursor: pointer; padding: 0.2rem; transition: color 0.3s;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.3rem;
+        cursor: pointer;
+        padding: 0.2rem;
+        transition: color 0.3s;
       }
-      .btn-fechar-carrinho:hover { color: #ff6b6b; }
-      .carrinho-itens { flex: 1; padding: 1rem 1.5rem; }
-      .carrinho-vazio { text-align: center; padding: 3rem 1rem; color: var(--text-secondary-color); }
-      .carrinho-vazio i { font-size: 3rem; color: var(--border-color); margin-bottom: 1rem; }
+      .btn-fechar-carrinho:hover {
+        color: #ff6b6b;
+      }
+      .carrinho-itens {
+        flex: 1;
+        padding: 1rem 1.5rem;
+      }
+      .carrinho-vazio {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: var(--text-secondary-color);
+      }
+      .carrinho-vazio i {
+        font-size: 3rem;
+        color: var(--border-color);
+        margin-bottom: 1rem;
+      }
       .item-carrinho {
-        display: flex; gap: 1rem; align-items: center;
-        padding: 0.8rem 0; border-bottom: 1px solid var(--border-color);
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid var(--border-color);
       }
       .item-carrinho img {
-        width: 60px; height: 60px; object-fit: cover;
-        border-radius: 8px; border: 1px solid var(--border-color);
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
       }
-      .item-info { flex: 1; }
-      .item-info h4 { font-size: 0.9rem; color: var(--text-color); margin-bottom: 0.3rem; }
-      .item-info .item-preco { color: var(--primary-color); font-weight: 700; font-size: 0.95rem; }
-      .item-qtd { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.4rem; }
+      .item-info {
+        flex: 1;
+      }
+      .item-info h4 {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        margin-bottom: 0.3rem;
+      }
+      .item-info .item-preco {
+        color: var(--primary-color);
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+      .item-qtd {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.4rem;
+      }
       .btn-qtd {
-        background: var(--surface-color-secondary, #2a2a2a); border: 1px solid var(--border-color);
-        color: var(--text-color); width: 26px; height: 26px; border-radius: 6px;
-        cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
+        background: var(--surface-color-secondary, #2a2a2a);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        width: 26px;
+        height: 26px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         transition: all 0.2s;
       }
-      .btn-qtd:hover { border-color: var(--primary-color); color: var(--primary-color); }
-      .qtd-num { min-width: 24px; text-align: center; font-weight: 600; font-size: 0.9rem; }
-      .btn-remover { background: none; border: none; color: #ff6b6b; cursor: pointer; font-size: 1rem; padding: 0.2rem; }
+      .btn-qtd:hover {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+      .qtd-num {
+        min-width: 24px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .btn-remover {
+        background: none;
+        border: none;
+        color: #ff6b6b;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 0.2rem;
+      }
       .carrinho-footer {
-        padding: 1.2rem 1.5rem; border-top: 2px solid var(--border-color);
-        background: var(--surface-color); position: sticky; bottom: 0;
+        padding: 1.2rem 1.5rem;
+        border-top: 2px solid var(--border-color);
+        background: var(--surface-color);
+        position: sticky;
+        bottom: 0;
       }
-      .carrinho-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-      .carrinho-total .label { color: var(--text-secondary-color); font-size: 0.9rem; }
-      .carrinho-total .valor { color: var(--primary-color); font-size: 1.3rem; font-weight: 700; }
+      .carrinho-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .carrinho-total .label {
+        color: var(--text-secondary-color);
+        font-size: 0.9rem;
+      }
+      .carrinho-total .valor {
+        color: var(--primary-color);
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
       .btn-finalizar {
-        width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        color: #1a1a1a; border: none; border-radius: 50px; font-size: 1rem;
-        font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.3s;
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: #1a1a1a;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
       }
-      .btn-finalizar:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(191,174,142,0.4); }
+      .btn-finalizar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(191, 174, 142, 0.4);
+      }
       .btn-limpar-carrinho {
-        width: 100%; margin-top: 0.8rem; padding: 0.6rem; background: transparent;
-        border: 1px solid var(--border-color); color: var(--text-secondary-color);
-        border-radius: 50px; font-size: 0.85rem; cursor: pointer; font-family: inherit; transition: all 0.3s;
+        width: 100%;
+        margin-top: 0.8rem;
+        padding: 0.6rem;
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary-color);
+        border-radius: 50px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.3s;
       }
-      .btn-limpar-carrinho:hover { border-color: #ff6b6b; color: #ff6b6b; }
+      .btn-limpar-carrinho:hover {
+        border-color: #ff6b6b;
+        color: #ff6b6b;
+      }
 
       /* Toast */
       .toast {
-        position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-        background: var(--primary-color); color: #1a1a1a; padding: 0.8rem 1.5rem;
-        border-radius: 50px; font-weight: 600; font-size: 0.9rem; z-index: 99999;
-        opacity: 0; transition: opacity 0.3s; pointer-events: none;
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary-color);
+        color: #1a1a1a;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        z-index: 99999;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
       }
-      .toast.visivel { opacity: 1; }
+      .toast.visivel {
+        opacity: 1;
+      }
 
       /* PRODUTOS DA API */
-      #produtos-api-section { padding: 4rem 0; }
-      .produtos-api-header { text-align: center; margin-bottom: 2rem; }
-      .produtos-api-header h2 { font-size: 2rem; color: var(--primary-color); }
-      #api-loading { text-align: center; padding: 3rem; color: var(--text-secondary-color); }
-      #api-loading i { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+      #produtos-api-section {
+        padding: 4rem 0;
+      }
+      .produtos-api-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .produtos-api-header h2 {
+        font-size: 2rem;
+        color: var(--primary-color);
+      }
+      #api-loading {
+        text-align: center;
+        padding: 3rem;
+        color: var(--text-secondary-color);
+      }
+      #api-loading i {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -136,14 +346,20 @@
     <div class="toast" id="toast"></div>
 
     <!-- Modal Carrinho -->
-    <div class="carrinho-overlay" id="carrinho-overlay" onclick="fecharCarrinho(event)">
+    <div
+      class="carrinho-overlay"
+      id="carrinho-overlay"
+      onclick="fecharCarrinho(event)"
+    >
       <div class="carrinho-sidebar" onclick="event.stopPropagation()">
         <div class="carrinho-header">
           <h2><i class="fas fa-shopping-cart"></i> Meu Carrinho</h2>
-          <button class="btn-fechar-carrinho" onclick="fecharCarrinho()"><i class="fas fa-times"></i></button>
+          <button class="btn-fechar-carrinho" onclick="fecharCarrinho()">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
         <div class="carrinho-itens" id="carrinho-itens"></div>
-        <div class="carrinho-footer" id="carrinho-footer" style="display:none;">
+        <div class="carrinho-footer" id="carrinho-footer" style="display: none">
           <div class="carrinho-total">
             <span class="label">Total</span>
             <span class="valor" id="carrinho-total">R$ 0,00</span>
@@ -171,7 +387,11 @@
         </ul>
         <div class="user-info">
           <span class="user-name" id="nav-user-name"></span>
-          <button class="carrinho-btn" onclick="abrirCarrinho()" title="Carrinho">
+          <button
+            class="carrinho-btn"
+            onclick="abrirCarrinho()"
+            title="Carrinho"
+          >
             <i class="fas fa-shopping-cart"></i>
             <span class="carrinho-badge oculto" id="carrinho-badge">0</span>
           </button>
@@ -183,11 +403,16 @@
           <span></span>
         </div>
       </div>
-    </nav>    <!-- Hero Section -->
+    </nav>
+    <!-- Hero Section -->
     <header class="hero">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <img src="img/LOGOMARCAREGISTRADA.jpg" alt="Logo Quem Sou Eu Sem Meus Irmãos" class="hero-logo" />
+        <img
+          src="img/LOGOMARCAREGISTRADA.jpg"
+          alt="Logo Quem Sou Eu Sem Meus Irmãos"
+          class="hero-logo"
+        />
         <h1 class="hero-title">Nossa Loja Virtual</h1>
         <p class="hero-subtitle">União. Força. Propósito.</p>
       </div>
@@ -204,7 +429,12 @@
         <div id="api-loading">
           <i class="fas fa-spinner fa-spin"></i>
           Carregando produtos...
-        </div>        <div class="produtos-grid" id="produtos-grid" style="display:none;"></div>
+        </div>
+        <div
+          class="produtos-grid"
+          id="produtos-grid"
+          style="display: none"
+        ></div>
       </div>
     </section>
 
@@ -282,45 +512,49 @@
           </p>
         </div>
       </div>
-    </footer>    <script src="script.js"></script>
+    </footer>
+    <script src="script.js"></script>
     <script>
-      const BACKEND_URL = window.location.hostname === 'localhost'
-        ? 'http://localhost:3001'
-        : 'https://qsesmi-pagamentos-api.onrender.com';
+      const BACKEND_URL =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3001"
+          : "https://qsesmi-pagamentos-api.onrender.com";
 
       // ===== PROTEÇÃO DE ROTA =====
-      const token = localStorage.getItem('token');
-      const clienteStr = localStorage.getItem('cliente');
+      const token = localStorage.getItem("token");
+      const clienteStr = localStorage.getItem("cliente");
       if (!token || !clienteStr) {
-        window.location.href = 'login.html';
+        window.location.href = "login.html";
       }
-      const cliente = JSON.parse(clienteStr || '{}');
-      document.getElementById('nav-user-name').textContent = `Olá, ${cliente.nome_completo?.split(' ')[0] || ''}`;
+      const cliente = JSON.parse(clienteStr || "{}");
+      document.getElementById("nav-user-name").textContent = `Olá, ${
+        cliente.nome_completo?.split(" ")[0] || ""
+      }`;
 
       function logout() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('cliente');
-        window.location.href = 'login.html';
+        localStorage.removeItem("token");
+        localStorage.removeItem("cliente");
+        window.location.href = "login.html";
       }
 
       // ===== CARRINHO (localStorage) =====
-      let carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+      let carrinho = JSON.parse(localStorage.getItem("carrinho") || "[]");
 
       function salvarCarrinho() {
-        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
         atualizarBadge();
         renderizarCarrinho();
       }
 
       function atualizarBadge() {
         const total = carrinho.reduce((s, i) => s + i.quantidade, 0);
-        const badge = document.getElementById('carrinho-badge');
+        const badge = document.getElementById("carrinho-badge");
         badge.textContent = total;
-        badge.classList.toggle('oculto', total === 0);
+        badge.classList.toggle("oculto", total === 0);
       }
 
       function adicionarAoCarrinho(produto) {
-        const existente = carrinho.find(i => i.id === produto.id);
+        const existente = carrinho.find((i) => i.id === produto.id);
         if (existente) {
           existente.quantidade++;
         } else {
@@ -331,12 +565,12 @@
       }
 
       function removerDoCarrinho(id) {
-        carrinho = carrinho.filter(i => i.id !== id);
+        carrinho = carrinho.filter((i) => i.id !== id);
         salvarCarrinho();
       }
 
       function alterarQuantidade(id, delta) {
-        const item = carrinho.find(i => i.id === id);
+        const item = carrinho.find((i) => i.id === id);
         if (!item) return;
         item.quantidade += delta;
         if (item.quantidade <= 0) removerDoCarrinho(id);
@@ -344,14 +578,14 @@
       }
 
       function limparCarrinho() {
-        if (!confirm('Deseja limpar o carrinho?')) return;
+        if (!confirm("Deseja limpar o carrinho?")) return;
         carrinho = [];
         salvarCarrinho();
       }
 
       function renderizarCarrinho() {
-        const container = document.getElementById('carrinho-itens');
-        const footer = document.getElementById('carrinho-footer');
+        const container = document.getElementById("carrinho-itens");
+        const footer = document.getElementById("carrinho-footer");
 
         if (carrinho.length === 0) {
           container.innerHTML = `
@@ -360,66 +594,98 @@
               <p>Seu carrinho está vazio</p>
               <small>Adicione produtos para continuar</small>
             </div>`;
-          footer.style.display = 'none';
+          footer.style.display = "none";
           return;
         }
 
-        const total = carrinho.reduce((s, i) => s + (parseFloat(i.preco) * i.quantidade), 0);
-        document.getElementById('carrinho-total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-        footer.style.display = 'block';
+        const total = carrinho.reduce(
+          (s, i) => s + parseFloat(i.preco) * i.quantidade,
+          0
+        );
+        document.getElementById("carrinho-total").textContent = `R$ ${total
+          .toFixed(2)
+          .replace(".", ",")}`;
+        footer.style.display = "block";
 
-        container.innerHTML = carrinho.map(item => `
+        container.innerHTML = carrinho
+          .map(
+            (item) => `
           <div class="item-carrinho">
-            ${item.imagem_url
-              ? `<img src="${item.imagem_url}" alt="${item.nome}" onerror="this.style.display='none'">`
-              : `<div style="width:60px;height:60px;background:var(--surface-color-secondary,#2a2a2a);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-image" style="color:#666;"></i></div>`
+            ${
+              item.imagem_url
+                ? `<img src="${item.imagem_url}" alt="${item.nome}" onerror="this.style.display='none'">`
+                : `<div style="width:60px;height:60px;background:var(--surface-color-secondary,#2a2a2a);border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-image" style="color:#666;"></i></div>`
             }
             <div class="item-info">
               <h4>${item.nome}</h4>
-              <div class="item-preco">R$ ${(parseFloat(item.preco) * item.quantidade).toFixed(2).replace('.', ',')}</div>
+              <div class="item-preco">R$ ${(
+                parseFloat(item.preco) * item.quantidade
+              )
+                .toFixed(2)
+                .replace(".", ",")}</div>
               <div class="item-qtd">
-                <button class="btn-qtd" onclick="alterarQuantidade(${item.id}, -1)">−</button>
+                <button class="btn-qtd" onclick="alterarQuantidade(${
+                  item.id
+                }, -1)">−</button>
                 <span class="qtd-num">${item.quantidade}</span>
-                <button class="btn-qtd" onclick="alterarQuantidade(${item.id}, 1)">+</button>
+                <button class="btn-qtd" onclick="alterarQuantidade(${
+                  item.id
+                }, 1)">+</button>
               </div>
             </div>
-            <button class="btn-remover" onclick="removerDoCarrinho(${item.id})" title="Remover">
+            <button class="btn-remover" onclick="removerDoCarrinho(${
+              item.id
+            })" title="Remover">
               <i class="fas fa-trash"></i>
             </button>
           </div>
-        `).join('');
+        `
+          )
+          .join("");
       }
 
       function abrirCarrinho() {
         renderizarCarrinho();
-        document.getElementById('carrinho-overlay').classList.add('aberto');
+        document.getElementById("carrinho-overlay").classList.add("aberto");
       }
 
       function fecharCarrinho(e) {
-        if (!e || e.target === document.getElementById('carrinho-overlay')) {
-          document.getElementById('carrinho-overlay').classList.remove('aberto');
+        if (!e || e.target === document.getElementById("carrinho-overlay")) {
+          document
+            .getElementById("carrinho-overlay")
+            .classList.remove("aberto");
         }
       }
 
       function finalizarCompra() {
         if (carrinho.length === 0) return;
         // Compra com múltiplos itens: usa o primeiro item + total geral
-        const total = carrinho.reduce((s, i) => s + (parseFloat(i.preco) * i.quantidade), 0);
+        const total = carrinho.reduce(
+          (s, i) => s + parseFloat(i.preco) * i.quantidade,
+          0
+        );
         const qtdTotal = carrinho.reduce((s, i) => s + i.quantidade, 0);
-        const titulo = carrinho.length === 1
-          ? carrinho[0].nome
-          : `${carrinho.length} produtos QSESMI`;
-        const descricao = carrinho.map(i => `${i.quantidade}x ${i.nome}`).join(', ');
+        const titulo =
+          carrinho.length === 1
+            ? carrinho[0].nome
+            : `${carrinho.length} produtos QSESMI`;
+        const descricao = carrinho
+          .map((i) => `${i.quantidade}x ${i.nome}`)
+          .join(", ");
 
-        const url = `pagamento.html?titulo=${encodeURIComponent(titulo)}&descricao=${encodeURIComponent(descricao)}&preco=${total.toFixed(2)}&quantidade=1`;
+        const url = `pagamento.html?titulo=${encodeURIComponent(
+          titulo
+        )}&descricao=${encodeURIComponent(descricao)}&preco=${total.toFixed(
+          2
+        )}&quantidade=1`;
         window.location.href = url;
       }
 
       function mostrarToast(msg) {
-        const toast = document.getElementById('toast');
+        const toast = document.getElementById("toast");
         toast.textContent = msg;
-        toast.classList.add('visivel');
-        setTimeout(() => toast.classList.remove('visivel'), 2500);
+        toast.classList.add("visivel");
+        setTimeout(() => toast.classList.remove("visivel"), 2500);
       }
 
       // ===== CARREGAR PRODUTOS DA API =====
@@ -428,41 +694,61 @@
           const res = await fetch(`${BACKEND_URL}/produtos`);
           const produtos = await res.json();
 
-          document.getElementById('api-loading').style.display = 'none';
-          const grid = document.getElementById('produtos-grid');
-          grid.style.display = 'grid';
+          document.getElementById("api-loading").style.display = "none";
+          const grid = document.getElementById("produtos-grid");
+          grid.style.display = "grid";
 
           if (!produtos.length) {
-            grid.innerHTML = '<p style="text-align:center;color:var(--text-secondary-color);grid-column:1/-1;">Nenhum produto disponível no momento.</p>';
+            grid.innerHTML =
+              '<p style="text-align:center;color:var(--text-secondary-color);grid-column:1/-1;">Nenhum produto disponível no momento.</p>';
             return;
           }
 
-          grid.innerHTML = produtos.map(p => `
+          grid.innerHTML = produtos
+            .map(
+              (p) => `
             <div class="produto-card">
-              ${p.imagem_url
-                ? `<img src="${p.imagem_url}" alt="${p.nome}" style="width:100%;height:220px;object-fit:cover;" onerror="this.src='img/LOGOMARCAREGISTRADA.jpg'" />`
-                : `<div style="width:100%;height:220px;background:var(--surface-color-secondary,#2a2a2a);display:flex;align-items:center;justify-content:center;"><i class="fas fa-image" style="font-size:3rem;color:#666;"></i></div>`
+              ${
+                p.imagem_url
+                  ? `<img src="${p.imagem_url}" alt="${p.nome}" style="width:100%;height:220px;object-fit:cover;" onerror="this.src='img/LOGOMARCAREGISTRADA.jpg'" />`
+                  : `<div style="width:100%;height:220px;background:var(--surface-color-secondary,#2a2a2a);display:flex;align-items:center;justify-content:center;"><i class="fas fa-image" style="font-size:3rem;color:#666;"></i></div>`
               }
               <div class="produto-info">
                 <h3>${p.nome}</h3>
-                <p>${p.descricao || ''}</p>
-                ${p.quantidade_estoque <= 5 && p.quantidade_estoque > 0
-                  ? `<p style="color:#ffc107;font-size:0.85rem;font-weight:600;">⚠️ Apenas ${p.quantidade_estoque} em estoque</p>`
-                  : ''
+                <p>${p.descricao || ""}</p>
+                ${
+                  p.quantidade_estoque <= 5 && p.quantidade_estoque > 0
+                    ? `<p style="color:#ffc107;font-size:0.85rem;font-weight:600;">⚠️ Apenas ${p.quantidade_estoque} em estoque</p>`
+                    : ""
                 }
-                <div class="produto-preco">R$ ${parseFloat(p.preco).toFixed(2).replace('.', ',')}</div>
+                <div class="produto-preco">R$ ${parseFloat(p.preco)
+                  .toFixed(2)
+                  .replace(".", ",")}</div>
               </div>
               <div style="padding:1rem;display:flex;flex-direction:column;gap:0.6rem;">
                 <button
                   class="btn-add-cart"
-                  ${p.quantidade_estoque === 0 ? 'disabled' : ''}
-                  onclick='adicionarAoCarrinho(${JSON.stringify({id:p.id,nome:p.nome,preco:p.preco,imagem_url:p.imagem_url})})'
+                  ${p.quantidade_estoque === 0 ? "disabled" : ""}
+                  onclick='adicionarAoCarrinho(${JSON.stringify({
+                    id: p.id,
+                    nome: p.nome,
+                    preco: p.preco,
+                    imagem_url: p.imagem_url,
+                  })})'
                 >
-                  <i class="fas fa-${p.quantidade_estoque === 0 ? 'ban' : 'cart-plus'}"></i>
-                  ${p.quantidade_estoque === 0 ? 'Esgotado' : 'Adicionar ao Carrinho'}
+                  <i class="fas fa-${
+                    p.quantidade_estoque === 0 ? "ban" : "cart-plus"
+                  }"></i>
+                  ${
+                    p.quantidade_estoque === 0
+                      ? "Esgotado"
+                      : "Adicionar ao Carrinho"
+                  }
                 </button>
                 <a
-                  href="https://wa.me/5521982919392?text=Olá!%20Tenho%20interesse%20em%20${encodeURIComponent(p.nome)}"
+                  href="https://wa.me/5521982919392?text=Olá!%20Tenho%20interesse%20em%20${encodeURIComponent(
+                    p.nome
+                  )}"
                   class="whatsapp-button" target="_blank"
                   style="text-align:center;"
                 >
@@ -470,10 +756,12 @@
                 </a>
               </div>
             </div>
-          `).join('');
-
+          `
+            )
+            .join("");
         } catch (err) {
-          document.getElementById('api-loading').innerHTML = '<p style="color:#ff6b6b;">Erro ao carregar produtos. Tente novamente.</p>';
+          document.getElementById("api-loading").innerHTML =
+            '<p style="color:#ff6b6b;">Erro ao carregar produtos. Tente novamente.</p>';
         }
       }
 
