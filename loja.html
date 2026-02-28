@@ -345,6 +345,24 @@
     <!-- Toast -->
     <div class="toast" id="toast"></div>
 
+    <!-- Lightbox -->
+    <div
+      class="lightbox-overlay"
+      id="lightbox-overlay"
+      onclick="fecharLightbox(event)"
+    >
+      <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+        <button
+          class="lightbox-fechar"
+          onclick="fecharLightbox()"
+          title="Fechar"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="" />
+      </div>
+    </div>
+
     <!-- Modal Carrinho -->
     <div
       class="carrinho-overlay"
@@ -680,13 +698,45 @@
         )}&quantidade=1`;
         window.location.href = url;
       }
-
       function mostrarToast(msg) {
         const toast = document.getElementById("toast");
         toast.textContent = msg;
         toast.classList.add("visivel");
         setTimeout(() => toast.classList.remove("visivel"), 2500);
+      } // ===== LIGHTBOX =====
+      function abrirLightbox(src, alt) {
+        const overlay = document.getElementById("lightbox-overlay");
+        const img = document.getElementById("lightbox-img");
+
+        // Limpa antes para não mostrar imagem anterior enquanto carrega
+        img.src = "";
+        img.alt = alt || "";
+        overlay.classList.add("aberto");
+        document.body.style.overflow = "hidden";
+
+        // Define o src depois (garante que o browser carrega a nova imagem)
+        requestAnimationFrame(() => {
+          img.src = src;
+        });
       }
+
+      function fecharLightbox(e) {
+        // Fecha se: chamado sem evento (ESC/botão X) OU clicou no fundo do overlay
+        if (!e || e.target === document.getElementById("lightbox-overlay")) {
+          const overlay = document.getElementById("lightbox-overlay");
+          overlay.classList.remove("aberto");
+          document.body.style.overflow = "";
+          // Limpa src para liberar memória
+          setTimeout(() => {
+            document.getElementById("lightbox-img").src = "";
+          }, 300);
+        }
+      }
+
+      // Fechar lightbox com ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") fecharLightbox();
+      });
 
       // ===== CARREGAR PRODUTOS DA API =====
       async function carregarProdutos() {
@@ -703,14 +753,20 @@
               '<p style="text-align:center;color:var(--text-secondary-color);grid-column:1/-1;">Nenhum produto disponível no momento.</p>';
             return;
           }
-
           grid.innerHTML = produtos
             .map(
               (p) => `
             <div class="produto-card">
               ${
                 p.imagem_url
-                  ? `<img src="${p.imagem_url}" alt="${p.nome}" style="width:100%;height:220px;object-fit:cover;" onerror="this.src='img/LOGOMARCAREGISTRADA.jpg'" />`
+                  ? `<img src="${p.imagem_url}" alt="${
+                      p.nome
+                    }" class="img-lightbox" data-src="${
+                      p.imagem_url
+                    }" data-alt="${p.nome.replace(
+                      /"/g,
+                      "&quot;"
+                    )}" onerror="this.src='img/LOGOMARCAREGISTRADA.jpg'" />`
                   : `<div style="width:100%;height:220px;background:var(--surface-color-secondary,#2a2a2a);display:flex;align-items:center;justify-content:center;"><i class="fas fa-image" style="font-size:3rem;color:#666;"></i></div>`
               }
               <div class="produto-info">
@@ -759,6 +815,14 @@
           `
             )
             .join("");
+
+          // Delegação: clique em qualquer img.img-lightbox abre o lightbox
+          document
+            .getElementById("produtos-grid")
+            .addEventListener("click", (e) => {
+              const img = e.target.closest(".img-lightbox");
+              if (img) abrirLightbox(img.dataset.src, img.dataset.alt);
+            });
         } catch (err) {
           document.getElementById("api-loading").innerHTML =
             '<p style="color:#ff6b6b;">Erro ao carregar produtos. Tente novamente.</p>';
