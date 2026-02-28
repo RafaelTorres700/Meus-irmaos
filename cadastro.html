@@ -6,8 +6,14 @@
     <title>Cadastro - QSESMI</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/png" href="img/LOGOMARCAREGISTRADA.jpg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
       .cadastro-wrapper {
         min-height: 100vh;
@@ -25,7 +31,7 @@
         padding: 2.5rem;
         width: 100%;
         max-width: 560px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       }
 
       .cadastro-logo {
@@ -134,8 +140,12 @@
       }
 
       @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       .section-title {
@@ -159,7 +169,11 @@
       }
 
       .btn-cadastrar {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color, #a89060));
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color, #a89060)
+        );
         color: var(--accent-color, #1a1a1a);
         border: none;
         border-radius: 50px;
@@ -219,7 +233,6 @@
   <body>
     <div class="cadastro-wrapper">
       <div class="cadastro-container">
-
         <!-- Logo -->
         <div class="cadastro-logo">
           <img src="img/LOGOMARCAREGISTRADA.jpg" alt="Logo QSESMI" />
@@ -231,40 +244,75 @@
         <div class="mensagem" id="mensagem"></div>
 
         <form class="cadastro-form" id="cadastroForm">
-
           <!-- Dados Pessoais -->
-          <p class="section-title"><i class="fas fa-user"></i> Dados Pessoais</p>
+          <p class="section-title">
+            <i class="fas fa-user"></i> Dados Pessoais
+          </p>
 
           <div class="form-group">
             <label for="nome_completo">Nome completo *</label>
-            <input type="text" id="nome_completo" placeholder="Seu nome completo" required />
+            <input
+              type="text"
+              id="nome_completo"
+              placeholder="Seu nome completo"
+              required
+            />
           </div>
 
           <div class="form-group">
             <label for="email">E-mail *</label>
-            <input type="email" id="email" placeholder="seu@email.com" required />
+            <input
+              type="email"
+              id="email"
+              placeholder="seu@email.com"
+              required
+            />
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="senha">Senha *</label>
-              <input type="password" id="senha" placeholder="Mínimo 6 caracteres" required minlength="6" />
+              <input
+                type="password"
+                id="senha"
+                placeholder="Mínimo 6 caracteres"
+                required
+                minlength="6"
+              />
               <span class="senha-info">Mínimo 6 caracteres</span>
             </div>
             <div class="form-group">
               <label for="confirmar_senha">Confirmar senha *</label>
-              <input type="password" id="confirmar_senha" placeholder="Repita a senha" required />
+              <input
+                type="password"
+                id="confirmar_senha"
+                placeholder="Repita a senha"
+                required
+              />
             </div>
           </div>
 
           <!-- Endereço -->
-          <p class="section-title"><i class="fas fa-map-marker-alt"></i> Endereço de Entrega</p>
+          <p class="section-title">
+            <i class="fas fa-map-marker-alt"></i> Endereço de Entrega
+          </p>
 
           <div class="form-group">
             <label for="cep">CEP *</label>
             <div class="cep-group">
-              <input type="text" id="cep" placeholder="00000-000" maxlength="9" required />
-              <button type="button" class="btn-buscar-cep" id="btnCep" title="Buscar CEP">
+              <input
+                type="text"
+                id="cep"
+                placeholder="00000-000"
+                maxlength="9"
+                required
+              />
+              <button
+                type="button"
+                class="btn-buscar-cep"
+                id="btnCep"
+                title="Buscar CEP"
+              >
                 <i class="fas fa-search"></i>
               </button>
             </div>
@@ -282,7 +330,11 @@
             </div>
             <div class="form-group">
               <label for="complemento">Complemento</label>
-              <input type="text" id="complemento" placeholder="Apto, Bloco..." />
+              <input
+                type="text"
+                id="complemento"
+                placeholder="Apto, Bloco..."
+              />
             </div>
           </div>
 
@@ -294,50 +346,60 @@
           <div class="form-row">
             <div class="form-group">
               <label for="cidade">Cidade *</label>
-              <input type="text" id="cidade" placeholder="Sua cidade" required />
+              <input
+                type="text"
+                id="cidade"
+                placeholder="Sua cidade"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="estado">Estado *</label>
-              <input type="text" id="estado" placeholder="UF" maxlength="2" required />
+              <input
+                type="text"
+                id="estado"
+                placeholder="UF"
+                maxlength="2"
+                required
+              />
             </div>
           </div>
 
           <button type="submit" class="btn-cadastrar" id="btnCadastrar">
             <i class="fas fa-user-plus"></i> Criar Conta
           </button>
-
         </form>
 
         <div class="cadastro-footer">
           Já tem conta? <a href="login.html">Faça login aqui</a>
         </div>
-
       </div>
     </div>
 
     <script>
-      const BACKEND_URL = window.location.hostname === 'localhost'
-        ? 'http://localhost:3001'
-        : 'https://qsesmi-pagamentos-api.onrender.com';
+      const BACKEND_URL =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3001"
+          : "https://qsesmi-pagamentos-api.onrender.com";
 
       // Formatar CEP automaticamente
-      document.getElementById('cep').addEventListener('input', function () {
-        let v = this.value.replace(/\D/g, '');
-        if (v.length > 5) v = v.slice(0, 5) + '-' + v.slice(5, 8);
+      document.getElementById("cep").addEventListener("input", function () {
+        let v = this.value.replace(/\D/g, "");
+        if (v.length > 5) v = v.slice(0, 5) + "-" + v.slice(5, 8);
         this.value = v;
       });
 
       // Buscar CEP pela API ViaCEP
       async function buscarCep() {
-        const cep = document.getElementById('cep').value.replace(/\D/g, '');
-        const btn = document.getElementById('btnCep');
+        const cep = document.getElementById("cep").value.replace(/\D/g, "");
+        const btn = document.getElementById("btnCep");
 
         if (cep.length !== 8) {
-          alert('Digite um CEP válido com 8 dígitos.');
+          alert("Digite um CEP válido com 8 dígitos.");
           return;
         }
 
-        btn.classList.add('loading');
+        btn.classList.add("loading");
         btn.innerHTML = '<i class="fas fa-spinner"></i>';
 
         try {
@@ -345,117 +407,123 @@
           const data = await res.json();
 
           if (data.erro) {
-            alert('CEP não encontrado. Verifique e tente novamente.');
+            alert("CEP não encontrado. Verifique e tente novamente.");
           } else {
-            document.getElementById('rua').value    = data.logradouro || '';
-            document.getElementById('bairro').value = data.bairro     || '';
-            document.getElementById('cidade').value = data.localidade || '';
-            document.getElementById('estado').value = data.uf         || '';
-            document.getElementById('numero').focus();
+            document.getElementById("rua").value = data.logradouro || "";
+            document.getElementById("bairro").value = data.bairro || "";
+            document.getElementById("cidade").value = data.localidade || "";
+            document.getElementById("estado").value = data.uf || "";
+            document.getElementById("numero").focus();
           }
         } catch (err) {
-          alert('Erro ao buscar CEP. Verifique sua conexão.');
+          alert("Erro ao buscar CEP. Verifique sua conexão.");
         } finally {
-          btn.classList.remove('loading');
+          btn.classList.remove("loading");
           btn.innerHTML = '<i class="fas fa-search"></i>';
         }
       }
 
-      document.getElementById('btnCep').addEventListener('click', buscarCep);
+      document.getElementById("btnCep").addEventListener("click", buscarCep);
 
       // Buscar CEP ao pressionar Enter no campo
-      document.getElementById('cep').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
+      document.getElementById("cep").addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
           e.preventDefault();
           buscarCep();
         }
       });
 
       // Submeter cadastro
-      document.getElementById('cadastroForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
+      document
+        .getElementById("cadastroForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
 
-        const mensagem = document.getElementById('mensagem');
-        const btn = document.getElementById('btnCadastrar');
+          const mensagem = document.getElementById("mensagem");
+          const btn = document.getElementById("btnCadastrar");
 
-        const senha = document.getElementById('senha').value;
-        const confirmar = document.getElementById('confirmar_senha').value;
+          const senha = document.getElementById("senha").value;
+          const confirmar = document.getElementById("confirmar_senha").value;
 
-        // Validar senhas
-        if (senha !== confirmar) {
-          mensagem.style.display = 'block';
-          mensagem.style.background = '#f8d7da';
-          mensagem.style.color = '#721c24';
-          mensagem.textContent = 'As senhas não coincidem!';
-          return;
-        }
+          // Validar senhas
+          if (senha !== confirmar) {
+            mensagem.style.display = "block";
+            mensagem.style.background = "#f8d7da";
+            mensagem.style.color = "#721c24";
+            mensagem.textContent = "As senhas não coincidem!";
+            return;
+          }
 
-        if (senha.length < 6) {
-          mensagem.style.display = 'block';
-          mensagem.style.background = '#f8d7da';
-          mensagem.style.color = '#721c24';
-          mensagem.textContent = 'A senha deve ter no mínimo 6 caracteres.';
-          return;
-        }
+          if (senha.length < 6) {
+            mensagem.style.display = "block";
+            mensagem.style.background = "#f8d7da";
+            mensagem.style.color = "#721c24";
+            mensagem.textContent = "A senha deve ter no mínimo 6 caracteres.";
+            return;
+          }
 
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cadastrando...';
+          btn.disabled = true;
+          btn.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Cadastrando...';
 
-        const payload = {
-          nome_completo : document.getElementById('nome_completo').value.trim(),
-          email         : document.getElementById('email').value.trim(),
-          senha         : senha,
-          cep           : document.getElementById('cep').value.trim(),
-          rua           : document.getElementById('rua').value.trim(),
-          numero        : document.getElementById('numero').value.trim(),
-          complemento   : document.getElementById('complemento').value.trim(),
-          bairro        : document.getElementById('bairro').value.trim(),
-          cidade        : document.getElementById('cidade').value.trim(),
-          estado        : document.getElementById('estado').value.trim().toUpperCase()
-        };
+          const payload = {
+            nome_completo: document
+              .getElementById("nome_completo")
+              .value.trim(),
+            email: document.getElementById("email").value.trim(),
+            senha: senha,
+            cep: document.getElementById("cep").value.trim(),
+            rua: document.getElementById("rua").value.trim(),
+            numero: document.getElementById("numero").value.trim(),
+            complemento: document.getElementById("complemento").value.trim(),
+            bairro: document.getElementById("bairro").value.trim(),
+            cidade: document.getElementById("cidade").value.trim(),
+            estado: document
+              .getElementById("estado")
+              .value.trim()
+              .toUpperCase(),
+          };
 
-        try {
-          const response = await fetch(`${BACKEND_URL}/auth/cadastro`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
+          try {
+            const response = await fetch(`${BACKEND_URL}/auth/cadastro`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
 
-          const data = await response.json();
+            const data = await response.json();
 
-          if (response.ok) {
-            mensagem.style.display = 'block';
-            mensagem.style.background = '#d4edda';
-            mensagem.style.color = '#155724';
-            mensagem.innerHTML = `
+            if (response.ok) {
+              mensagem.style.display = "block";
+              mensagem.style.background = "#d4edda";
+              mensagem.style.color = "#155724";
+              mensagem.innerHTML = `
               <i class="fas fa-check-circle"></i>
               <strong>Cadastro realizado com sucesso!</strong><br>
               Verifique seu e-mail <strong>${payload.email}</strong> para confirmar sua conta antes de fazer login.
             `;
-            document.getElementById('cadastroForm').reset();
+              document.getElementById("cadastroForm").reset();
 
-            setTimeout(() => {
-              window.location.href = 'login.html';
-            }, 4000);
-
-          } else {
-            mensagem.style.display = 'block';
-            mensagem.style.background = '#f8d7da';
-            mensagem.style.color = '#721c24';
-            mensagem.textContent = data.error || 'Erro ao realizar cadastro';
+              setTimeout(() => {
+                window.location.href = "login.html";
+              }, 4000);
+            } else {
+              mensagem.style.display = "block";
+              mensagem.style.background = "#f8d7da";
+              mensagem.style.color = "#721c24";
+              mensagem.textContent = data.error || "Erro ao realizar cadastro";
+              btn.disabled = false;
+              btn.innerHTML = '<i class="fas fa-user-plus"></i> Criar Conta';
+            }
+          } catch (error) {
+            mensagem.style.display = "block";
+            mensagem.style.background = "#f8d7da";
+            mensagem.style.color = "#721c24";
+            mensagem.textContent = "Erro ao conectar com o servidor";
             btn.disabled = false;
             btn.innerHTML = '<i class="fas fa-user-plus"></i> Criar Conta';
           }
-
-        } catch (error) {
-          mensagem.style.display = 'block';
-          mensagem.style.background = '#f8d7da';
-          mensagem.style.color = '#721c24';
-          mensagem.textContent = 'Erro ao conectar com o servidor';
-          btn.disabled = false;
-          btn.innerHTML = '<i class="fas fa-user-plus"></i> Criar Conta';
-        }
-      });
+        });
     </script>
   </body>
 </html>

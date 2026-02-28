@@ -1,28 +1,118 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Login - QSESMI</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="login-container">
       <h1 class="login-title">Faça o login para comprar Online</h1>
-      <form class="login-form" action="/login" method="POST">
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" required />
+
+      <!-- Mensagem de erro/sucesso -->
+      <div
+        id="mensagem"
+        style="
+          display: none;
+          padding: 10px;
+          border-radius: 6px;
+          margin-bottom: 15px;
+          text-align: center;
+        "
+      ></div>
+
+      <form class="login-form" id="loginForm">
+        <label for="email">E-mail:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="seu@email.com"
+          required
+        />
 
         <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Sua senha"
+          required
+        />
 
-        <label for="address">Endereço de Entrega:</label>
-        <input type="text" id="address" name="address" required />
-
-        <input class="login-button" type="submit" value="Entrar" />
+        <input
+          class="login-button"
+          type="submit"
+          value="Entrar"
+          id="btnEntrar"
+        />
       </form>
+
+      <p style="text-align: center; margin-top: 15px">
+        Não tem conta?
+        <a href="cadastro.html">Cadastre-se aqui</a>
+      </p>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+      const BACKEND_URL =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3001"
+          : "https://qsesmi-pagamentos-api.onrender.com";
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const btn = document.getElementById("btnEntrar");
+          const mensagem = document.getElementById("mensagem");
+
+          btn.value = "Entrando...";
+          btn.disabled = true;
+
+          try {
+            const response = await fetch(`${BACKEND_URL}/auth/login`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, senha: password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              // Salvar JWT e dados do cliente no localStorage
+              localStorage.setItem("token", data.token);
+              localStorage.setItem("cliente", JSON.stringify(data.cliente));
+
+              mensagem.style.display = "block";
+              mensagem.style.background = "#d4edda";
+              mensagem.style.color = "#155724";
+              mensagem.textContent = `Bem-vindo, ${data.cliente.nome_completo}! Redirecionando...`;
+
+              setTimeout(() => {
+                window.location.href = "loja.html";
+              }, 1500);
+            } else {
+              mensagem.style.display = "block";
+              mensagem.style.background = "#f8d7da";
+              mensagem.style.color = "#721c24";
+              mensagem.textContent = data.error || "Erro ao fazer login";
+              btn.value = "Entrar";
+              btn.disabled = false;
+            }
+          } catch (error) {
+            mensagem.style.display = "block";
+            mensagem.style.background = "#f8d7da";
+            mensagem.style.color = "#721c24";
+            mensagem.textContent = "Erro ao conectar com o servidor";
+            btn.value = "Entrar";
+            btn.disabled = false;
+          }
+        });
+    </script>
   </body>
 </html>
