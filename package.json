@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Frontend - Quem Sou Eu Sem Meus Irmãos",
   "scripts": {
-    "start": "serve . -l $PORT --no-clipboard",
+    "start": "npx serve . -l ${PORT:-3000} --no-clipboard",
     "dev": "serve . -l 3000"
   },
   "dependencies": {
