@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -540,7 +540,7 @@
       const BACKEND_URL =
         window.location.hostname === "localhost"
           ? "http://localhost:3001"
-          : "https://qsesmi-pagamentos-api.onrender.com";
+          : "https://qsesmi-pagamentos-production.up.railway.app";
 
       // ===== PROTEÇÃO DE ROTA =====
       const token = localStorage.getItem("token");
@@ -622,7 +622,7 @@
 
         const total = carrinho.reduce(
           (s, i) => s + parseFloat(i.preco) * i.quantidade,
-          0
+          0,
         );
         document.getElementById("carrinho-total").textContent = `R$ ${total
           .toFixed(2)
@@ -661,7 +661,7 @@
               <i class="fas fa-trash"></i>
             </button>
           </div>
-        `
+        `,
           )
           .join("");
       }
@@ -684,7 +684,7 @@
         // Compra com múltiplos itens: usa o primeiro item + total geral
         const total = carrinho.reduce(
           (s, i) => s + parseFloat(i.preco) * i.quantidade,
-          0
+          0,
         );
         const qtdTotal = carrinho.reduce((s, i) => s + i.quantidade, 0);
         const titulo =
@@ -696,9 +696,9 @@
           .join(", ");
 
         const url = `pagamento.html?titulo=${encodeURIComponent(
-          titulo
+          titulo,
         )}&descricao=${encodeURIComponent(descricao)}&preco=${total.toFixed(
-          2
+          2,
         )}&quantidade=1`;
         window.location.href = url;
       }
@@ -769,7 +769,7 @@
                       p.imagem_url
                     }" data-alt="${p.nome.replace(
                       /"/g,
-                      "&quot;"
+                      "&quot;",
                     )}" onerror="this.src='img/LOGOMARCAREGISTRADA.jpg'" />`
                   : `<div style="width:100%;height:220px;background:var(--surface-color-secondary,#2a2a2a);display:flex;align-items:center;justify-content:center;"><i class="fas fa-image" style="font-size:3rem;color:#666;"></i></div>`
               }
@@ -807,7 +807,7 @@
                 </button>
                 <a
                   href="https://wa.me/5521982919392?text=Olá!%20Tenho%20interesse%20em%20${encodeURIComponent(
-                    p.nome
+                    p.nome,
                   )}"
                   class="whatsapp-button" target="_blank"
                   style="text-align:center;"
@@ -816,7 +816,7 @@
                 </a>
               </div>
             </div>
-          `
+          `,
             )
             .join("");
 

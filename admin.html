@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -651,7 +651,7 @@
       const BACKEND_URL =
         window.location.hostname === "localhost"
           ? "http://localhost:3001"
-          : "https://qsesmi-pagamentos-api.onrender.com";
+          : "https://qsesmi-pagamentos-production.up.railway.app";
 
       let ADMIN_KEY = "";
 
@@ -690,7 +690,7 @@
             mostrarMsg(
               msgEl,
               "Chave inválida! Verifique e tente novamente.",
-              "error"
+              "error",
             );
           }
         } catch (err) {
@@ -734,7 +734,7 @@
           // Atualizar stats
           document.getElementById("stat-total").textContent = produtos.length;
           document.getElementById("stat-ativos").textContent = produtos.filter(
-            (p) => p.ativo
+            (p) => p.ativo,
           ).length;
           document.getElementById("stat-sem-estoque").textContent =
             produtos.filter((p) => p.quantidade_estoque === 0).length;
@@ -783,8 +783,8 @@
                         p.quantidade_estoque > 5
                           ? "badge-estoque-ok"
                           : p.quantidade_estoque > 0
-                          ? "badge-estoque-baixo"
-                          : "badge-estoque-zero"
+                            ? "badge-estoque-baixo"
+                            : "badge-estoque-zero"
                       }">
                         ${p.quantidade_estoque} un.
                       </span>
@@ -798,15 +798,15 @@
                     </td>
                     <td>
                       <button class="btn-icon btn-edit" onclick="editarProduto(${JSON.stringify(
-                        p
+                        p,
                       ).replace(/"/g, "&quot;")})" title="Editar">
                         <i class="fas fa-edit"></i>
                       </button>
                       <button class="btn-icon btn-toggle" onclick="toggleProduto(${
                         p.id
                       }, ${p.ativo})" title="${
-                      p.ativo ? "Desativar" : "Ativar"
-                    }">
+                        p.ativo ? "Desativar" : "Ativar"
+                      }">
                         <i class="fas fa-${p.ativo ? "eye-slash" : "eye"}"></i>
                       </button>
                       <button class="btn-icon btn-delete" onclick="excluirProduto(${
@@ -816,7 +816,7 @@
                       </button>
                     </td>
                   </tr>
-                `
+                `,
                   )
                   .join("")}
               </tbody>
@@ -870,7 +870,7 @@
             mostrarMsg(
               msgEl,
               `Produto ${id ? "atualizado" : "criado"} com sucesso!`,
-              "success"
+              "success",
             );
             limparFormulario();
             carregarProdutos();
@@ -994,7 +994,7 @@
                         : "-"
                     }</td>
                   </tr>
-                `
+                `,
                   )
                   .join("")}
               </tbody>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -157,7 +157,7 @@
       const BACKEND_URL =
         window.location.hostname === "localhost"
           ? "http://localhost:3001"
-          : "https://qsesmi-pagamentos-api.onrender.com";
+          : "https://qsesmi-pagamentos-production.up.railway.app";
 
       async function verificarEmail() {
         const params = new URLSearchParams(window.location.search);
@@ -170,7 +170,7 @@
 
         try {
           const response = await fetch(
-            `${BACKEND_URL}/auth/confirmar-email?token=${token}`
+            `${BACKEND_URL}/auth/confirmar-email?token=${token}`,
           );
           const data = await response.json();
 
