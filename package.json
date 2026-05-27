@@ -1,0 +1,15 @@
+{
+  "name": "qsesmi-frontend",
+  "version": "1.0.0",
+  "description": "Frontend - Quem Sou Eu Sem Meus Irmãos",
+  "scripts": {
+    "start": "serve . -l $PORT --no-clipboard",
+    "dev": "serve . -l 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.3"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
