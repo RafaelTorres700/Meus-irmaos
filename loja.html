@@ -318,27 +318,48 @@
       }
 
       /* PRODUTOS DA API */
-      #produtos-api-section {
-        padding: 4rem 0;
-      }
-      .produtos-api-header {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-      .produtos-api-header h2 {
-        font-size: 2rem;
-        color: var(--primary-color);
-      }
-      #api-loading {
-        text-align: center;
-        padding: 3rem;
-        color: var(--text-secondary-color);
-      }
-      #api-loading i {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        display: block;
-      }
+      /* grid: cards menores, centralizados, máx 260px */
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 260px));
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* imagem: altura fixa compacta */
+.produto-card img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    background: #1a1a1a;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* info do card: padding menor */
+.produto-info {
+    padding: 0.9rem 1rem 0.5rem;
+}
+
+.produto-info h3 {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.produto-info p {
+    color: var(--text-secondary-color);
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+}
+
+.produto-preco {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
     </style>
   </head>
   <body>
